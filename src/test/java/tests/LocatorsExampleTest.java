@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class Locator {
+public class LocatorsExampleTest {
     @Test
     void cssXpath(){
         $("[data-testid=email]").setValue("test@gmail.com");
