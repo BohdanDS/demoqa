@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.DragAndDropOptions;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -17,11 +18,22 @@ public class DragAndDropTest {
         Configuration.holdBrowserOpen = false;
     }
     @Test
-    void dragAndDrop(){
+    void dragAndDropAction() {
         open("drag_and_drop");
         SelenideElement elementA = $("#column-a");
         SelenideElement elementB = $("#column-b");
         actions().moveToElement(elementA).clickAndHold().moveToElement(elementB).release().perform();
         elementA.shouldHave(text("B"));
+    }
+
+    @Test
+    void dragAndDrop(){
+        open("drag_and_drop");
+        SelenideElement elementA = $("#column-a");
+        SelenideElement elementB = $("#column-b");
+        elementA.dragAndDrop(DragAndDropOptions.to(elementB));
+        elementA.shouldHave(text("B"));
+        elementB.shouldHave(text("A"));
+
     }
 }
