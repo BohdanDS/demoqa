@@ -1,11 +1,11 @@
 package tests;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class DragAndDropTest {
@@ -22,6 +22,6 @@ public class DragAndDropTest {
         SelenideElement elementA = $("#column-a");
         SelenideElement elementB = $("#column-b");
         actions().moveToElement(elementA).clickAndHold().moveToElement(elementB).release().perform();
-        elementA.shouldHave(Condition.text("B"));
+        elementA.shouldHave(text("B"));
     }
 }
