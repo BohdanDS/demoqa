@@ -1,33 +1,31 @@
-package tests;
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
+package tests.PageObject;
+
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
+
 import java.io.File;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class HomeWorkTest {
 
-    @BeforeAll
-    static void beforeFillForm(){
-        Configuration.browserSize = "1920x1080";
-        Configuration.pageLoadStrategy = "eager";
-        Configuration.baseUrl= "https://demoqa.com/";
-        Configuration.holdBrowserOpen = false;
-    }
+public class RegistrationPageObjectPatternTest extends TestBase {
+
+    RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
     void fillForm(){
-        open("automation-practice-form");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
-        $("#firstName").setValue("Bohdan");
-        $("#lastName").setValue("Peliutkevich");
-        $("#genterWrapper").$(byText("Male")).click();
-        $("#userEmail").setValue("bohdan@gmail.com");
-        $("#userNumber").setValue("1234567890");
+
+        registrationPage.openPage()
+                .setFirstName("Bohdan")
+                .setLastName("Peliutkevich")
+                .setGender("Male")
+                .setEmail("bohdan@gmail.com")
+                .setPhoneNumber("1234567890");
+
+
         $("#dateOfBirthInput").click();
         $(".react-datepicker__year-select").selectOption("1994");
         $(".react-datepicker__month-select").selectOption("January");
