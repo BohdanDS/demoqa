@@ -11,12 +11,13 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-@Tag("Registration_tests")
+
 public class RegistrationPageObjectPatternTest extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
+    @Tag("Registration_tests")
     void fillForm(){
 
         registrationPage.openPage()
